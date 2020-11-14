@@ -1,0 +1,13 @@
+S -> AC
+S -> D
+S -> B
+S -> $
+A -> a
+C -> c
+C -> BC
+D -> dD
+E -> aA
+E -> e
+B -> B
+F -> fF
+F -> f

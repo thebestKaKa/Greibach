@@ -1,0 +1,9 @@
+S -> ABCDEF
+A -> aCa
+A -> a
+B -> bB
+B -> b
+C -> D
+D -> d
+E -> e
+F -> f

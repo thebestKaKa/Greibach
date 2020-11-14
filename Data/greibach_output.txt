@@ -1,0 +1,16 @@
+S -> c
+S -> bB
+S -> aCB
+S -> cDCB
+S -> bBDCB
+S -> aACBDCB
+S -> cDACBDCB
+S -> bBDACBDCB
+S -> aCBDCB
+S -> bBDCBDCB
+S -> cDCBDCB
+A -> bBDA
+A -> bBD
+B -> c
+C -> b
+D -> a

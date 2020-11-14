@@ -1,0 +1,30 @@
+
+
+S -> AB
+A -> a
+B -> C
+B -> b
+
+S -> aAbBC
+A -> aA
+A -> B
+A -> $
+B -> bcB
+B -> Cca
+C -> cC
+C -> c
+
+S -> ACA
+A -> aAa
+A -> B
+B -> bB
+B -> b
+B -> C
+C -> Cc
+C -> $
+
+S -> aA
+A -> B
+B -> C
+C -> cC
+C -> c

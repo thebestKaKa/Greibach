@@ -1,0 +1,15 @@
+S -> aADBC
+S -> aDBC
+A -> aA
+A -> bEB
+A -> a
+A -> cCEF
+A -> cEF
+B -> bEB
+B -> cCEF
+B -> cEF
+C -> cC
+C -> c
+D -> b
+E -> c
+F -> a
