@@ -74,7 +74,7 @@ public class CheckNPDA {
 
     public static void main(String[] args) throws IOException {
         CheckNPDA chkNPDA = new CheckNPDA();
-        if(chkNPDA.checkNPDA("./Data/greibach_output.txt","aabcabcabcabcabc")){
+        if(chkNPDA.checkNPDA("./Data/greibach_output.txt","abcabcabcabcabcabcabcabcabc")){
             System.out.println("接受~");
         }else {
             System.out.println("失败!");
