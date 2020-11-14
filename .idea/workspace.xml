@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1f74d165-755c-48bd-9a45-56ef86ff0899" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/greibach_output.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Data/greibach_output.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Greibach/CheckNPDA.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Greibach/CheckNPDA.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CheckNPDA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CheckNPDA.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -32,7 +29,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="settings.github" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -125,12 +122,30 @@
       <workItem from="1604970583433" duration="12781000" />
       <workItem from="1605249631767" duration="11662000" />
       <workItem from="1605322218771" duration="1095000" />
-      <workItem from="1605325064384" duration="138000" />
+      <workItem from="1605325064384" duration="627000" />
     </task>
+    <task id="LOCAL-00001" summary="修改str">
+      <created>1605325450614</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1605325450614</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -149,5 +164,7 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/Greibach" />
     </ignored-roots>
+    <MESSAGE value="修改str" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改str" />
   </component>
 </project>
