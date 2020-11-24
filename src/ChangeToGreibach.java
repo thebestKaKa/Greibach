@@ -5,7 +5,7 @@ public class ChangeToGreibach {
     //判断已经使用的非终结符 0表示未用
     private int[] alphabet = new int[26];
     //读取产生式左右两端
-    public List<ContextFreeNode> readRule(List<ContextFreeNode> list,String filePath) throws IOException {
+    List<ContextFreeNode> readRule(List<ContextFreeNode> list, String filePath) {
         list.clear();
         try {
             String encoding = "utf-8";
@@ -13,10 +13,10 @@ public class ChangeToGreibach {
             if (file.isFile() && file.exists()){//判断文件是否存在
                 InputStreamReader read = new InputStreamReader(new FileInputStream(file),encoding);//考虑到编码格式
                 BufferedReader bufferedReader = new BufferedReader(read);
-                String lineTxt = null;
+                String lineTxt;
                 while((lineTxt = bufferedReader.readLine()) != null){
                     //读文件的行readline,每次使用都读一行
-                    String arr[]=lineTxt.split(" ");
+                    String[] arr =lineTxt.split(" ");
                     ContextFreeNode node = new ContextFreeNode();
                     node.setFirst(arr[0]);
                     node.setSecond(arr[2]);
@@ -33,26 +33,25 @@ public class ChangeToGreibach {
         return list;
     }
     //判断是否是上下文无关文法
-    public void judgeContextFreeGrammar(List<ContextFreeNode> list){
+    private void judgeContextFreeGrammar(List<ContextFreeNode> list){
         boolean flag = true;
         try {
-            for (int i = 0;i < list.size();i++){
-                ContextFreeNode temp = list.get(i);
+            for (ContextFreeNode temp : list) {
                 //System.out.println(temp.getFirst() + ' ' + temp.getSecond());
                 char[] left_arr = temp.getFirst().toCharArray();
                 char[] right_arr = temp.getSecond().toCharArray();
-                if (left_arr.length > 1 || left_arr.length > right_arr.length){
+                if (left_arr.length > 1 || left_arr.length > right_arr.length) {
                     flag = false;
                     break;
-                }else if (!Character.isUpperCase(left_arr[0])){
+                } else if (!Character.isUpperCase(left_arr[0])) {
                     flag = false;
                     break;
-                }else {
+                } else {
                     //设置已用
                     alphabet[left_arr[0] - 'A'] = 1;
                 }
             }
-            if (flag == true)System.out.println("给定文法属于上下文无关文法。");
+            if (flag)System.out.println("给定文法属于上下文无关文法。");
             else System.out.println("给定文法不属于上下文无关文法！！！");
         }catch (Exception e){
             System.out.println("给定文法不属于上下文无关文法！！！");
@@ -60,7 +59,7 @@ public class ChangeToGreibach {
         }
     }
     //消除无用符号(不能推出终结符的符号)
-    public void removeUselessSign(List<ContextFreeNode> list){
+    private void removeUselessSign(List<ContextFreeNode> list){
         System.out.println("消除无用符号！");
         HashSet<Character> isUseful = new HashSet<>();
         HashSet<Character> isUseful_pre = (HashSet<Character>) isUseful.clone();
@@ -68,21 +67,20 @@ public class ChangeToGreibach {
         //get useful
         while (isUseful.size() != isUseful_pre.size()){
             isUseful_pre = (HashSet<Character>) isUseful.clone();
-            for (int count0 = 0;count0 < list.size();count0++){
-                ContextFreeNode node = list.get(count0);
+            for (ContextFreeNode node : list) {
                 char left = node.getFirst().charAt(0);
                 char[] right = node.getSecond().toCharArray();
-                if (right.length == 1 && (Character.isLowerCase(right[0]) || right[0] == '$')){
+                if (right.length == 1 && (Character.isLowerCase(right[0]) || right[0] == '$')) {
                     isUseful.add(left);
                     continue;
                 }
                 boolean flag = true;
-                for (int count1 = 0; count1 < right.length;count1++){
-                    if (Character.isUpperCase(right[count1])){
-                        flag = flag && isUseful.contains(right[count1]);
+                for (char c : right) {
+                    if (Character.isUpperCase(c)) {
+                        flag = flag && isUseful.contains(c);
                     }
                 }
-                if (flag)isUseful.add(left);
+                if (flag) isUseful.add(left);
             }
         }//end while
         //System.out.println(isUseful);
@@ -95,8 +93,8 @@ public class ChangeToGreibach {
                 count2--;
                 continue;
             }
-            for (int count3 = 0; count3 < right.length;count3++){
-                if (Character.isUpperCase(right[count3]) && !isUseful.contains(right[count3])){
+            for (char c : right) {
+                if (Character.isUpperCase(c) && !isUseful.contains(c)) {
                     list.remove(count2);
                     count2--;
                     break;
@@ -109,14 +107,13 @@ public class ChangeToGreibach {
         isUseful.add('S');
         while (isUseful.size() != isUseful_pre.size()){
             isUseful_pre = (HashSet<Character>) isUseful.clone();
-            for (int count4 = 0; count4 < list.size(); count4++){
-                ContextFreeNode node = list.get(count4);
+            for (ContextFreeNode node : list) {
                 char left = node.getFirst().charAt(0);
                 char[] right = node.getSecond().toCharArray();
-                if (isUseful.contains(left)){
-                    for(int count5 = 0; count5 < right.length;count5++){
-                        if (Character.isUpperCase(right[count5]))
-                            isUseful.add(right[count5]);
+                if (isUseful.contains(left)) {
+                    for (char c : right) {
+                        if (Character.isUpperCase(c))
+                            isUseful.add(c);
                     }
                 }
             }
@@ -126,13 +123,12 @@ public class ChangeToGreibach {
             if(!isUseful.contains(node.getFirst().charAt(0))){
                 list.remove(count6);
                 count6--;
-                continue;
             }
         }
     }
     //消除空产生式 考虑一个产生式中多个非终都能推出空 考虑一个非终只有推空一个产生式
     //S -> e不是空产生式
-    public void removeE(List<ContextFreeNode> list){
+    private void removeE(List<ContextFreeNode> list){
         System.out.println("消除空产生式！");
         Set<ContextFreeNode> set = new HashSet<>();
         String[] production_right;
@@ -153,15 +149,13 @@ public class ChangeToGreibach {
                         production_right[count++] = node.getSecond();
                 }
                 replaceV(list,V,production_right,set);
-                for(ContextFreeNode node:set){
-                    list.add(node);
-                }
+                list.addAll(set);
                 set.clear();
             }
         }
     }
     //替换V V为推出空的非终结符
-    public void replaceV(List<ContextFreeNode> list, char V, String[] production_right, Set<ContextFreeNode> set){
+    private void replaceV(List<ContextFreeNode> list, char V, String[] production_right, Set<ContextFreeNode> set){
         Iterator<ContextFreeNode> iterator = list.iterator();
         while (iterator.hasNext()){
             ContextFreeNode node = iterator.next();
@@ -200,7 +194,7 @@ public class ChangeToGreibach {
         }
     }
     //消除单一产生式
-    public void removeUnitProduction(List<ContextFreeNode> list){
+    private void removeUnitProduction(List<ContextFreeNode> list){
         System.out.println("消除单一产生式!");
         for (int i = 0; i < list.size();i++){
             ContextFreeNode node = list.get(i);
@@ -227,7 +221,7 @@ public class ChangeToGreibach {
         }
     }
     //消除直接左递归！！！
-    public void removeLeftRecursive(List<ContextFreeNode> list){
+    private void removeLeftRecursive(List<ContextFreeNode> list){
         //System.out.println("消除左递归");
         for (int i = 0; i < list.size();i++){
             ContextFreeNode node = list.get(i);
@@ -249,11 +243,9 @@ public class ChangeToGreibach {
                 node_new1.setFirst(String.valueOf(node_left));
                 StringBuilder stringBuilder = new StringBuilder(node.getSecond());
                 stringBuilder.deleteCharAt(0);
-                stringBuilder.append(String.valueOf(node_left));
+                stringBuilder.append(node_left);
                 node_new1.setSecond(stringBuilder.toString());
                 node_new2.setFirst(String.valueOf(node_left));
-//                StringBuilder s = new StringBuilder(node.getSecond());
-//                s.deleteCharAt(0);
                 node_new2.setSecond("$");
                 list.add(node_new1);
                 list.add(node_new2);
@@ -263,9 +255,7 @@ public class ChangeToGreibach {
                             node_temp.setSecond(String.valueOf(node_left));
                             continue;
                         }
-                        StringBuilder str = new StringBuilder(node_temp.getSecond());
-                        str.append(node_left);
-                        node_temp.setSecond(str.toString());
+                        node_temp.setSecond(node_temp.getSecond() + node_left);
                     }
                 }
             }
@@ -273,7 +263,7 @@ public class ChangeToGreibach {
         removeE(list);
     }
     //把右边第一个为非终结符的替换掉
-    public void greibachFirstStep(List<ContextFreeNode> list){
+    private void greibachFirstStep(List<ContextFreeNode> list){
         System.out.println("把产生式右部变为终结符! 消除间接左递归！");
         for(int i = 0; i < list.size();i++){
             ContextFreeNode node = list.get(i);
@@ -313,9 +303,7 @@ public class ChangeToGreibach {
                                 node_temp.setSecond(String.valueOf(node_left));
                                 continue;
                             }
-                            StringBuilder str = new StringBuilder(node_temp.getSecond());
-                            str.append(node_left);
-                            node_temp.setSecond(str.toString());
+                            node_temp.setSecond(node_temp.getSecond() + node_left);
                         }
                     }
                     continue;
@@ -346,7 +334,7 @@ public class ChangeToGreibach {
         removeE(list);
     }
     //将右边转换为格里巴克范式
-    public void greibachSecondStep(List<ContextFreeNode> list){
+    private void greibachSecondStep(List<ContextFreeNode> list){
         System.out.println("格里巴赫范式如下：");
         for (int i = 0; i < list.size();i++){
             ContextFreeNode node = list.get(i);
@@ -381,12 +369,12 @@ public class ChangeToGreibach {
         }
     }
     //需要加一个判断条件 只有推出所需终结符的唯一产生式
-    public String lookForV(List<ContextFreeNode> list, char t){
+    private String lookForV(List<ContextFreeNode> list, char t){
         for (ContextFreeNode node : list){
             char[] arr_right = node.getSecond().toCharArray();
             int count = 0;
-            for (int i = 0; i < list.size();i++){
-                if (list.get(i).getFirst().equals(node.getFirst()))count++;
+            for (ContextFreeNode contextFreeNode : list) {
+                if (contextFreeNode.getFirst().equals(node.getFirst())) count++;
             }
             if (arr_right.length == 1 && arr_right[0] == t && count == 1){
                 return node.getFirst();
@@ -395,20 +383,20 @@ public class ChangeToGreibach {
         return null;
     }
 
-    public void showRules(List<ContextFreeNode> list){
+    void showRules(List<ContextFreeNode> list){
         sort(list);
         eliminateDuplication(list);
         for (ContextFreeNode node:list){
             System.out.println(node.getFirst() + " -> " + node.getSecond());
         }
     }
-    public void showRule(List<ContextFreeNode> list){
+    private void showRule(List<ContextFreeNode> list){
         eliminateDuplication(list);
         for (ContextFreeNode node:list){
             System.out.println(node.getFirst() + " -> " + node.getSecond());
         }
     }
-    public void sort(List<ContextFreeNode> list){
+    private void sort(List<ContextFreeNode> list){
         //根据list对象某个属性排序
         list.sort(Comparator.comparing(ContextFreeNode::getFirst));
         List<ContextFreeNode> list_others = new LinkedList();
@@ -422,7 +410,7 @@ public class ChangeToGreibach {
         list.addAll(list_others);
     }
 
-    public void eliminateDuplication(List<ContextFreeNode> list){
+    private void eliminateDuplication(List<ContextFreeNode> list){
         for (int i = 0; i < list.size();i++){
             for (int j = i + 1;j < list.size();j++){
                 if (list.get(i).getFirst().equals(list.get(j).getFirst()) &&
@@ -434,26 +422,24 @@ public class ChangeToGreibach {
         }
     }
     //将结果输出到Data/greibach_output.txt中
-    public void writeToTxt(List<ContextFreeNode> list){
+    private void writeToTxt(List<ContextFreeNode> list){
         try {
             FileWriter output = new FileWriter("./Data/greibach_output.txt");
             //filewrite 到output.txt中
             @SuppressWarnings("resource")
             BufferedWriter bf = new BufferedWriter(output);
 
-            for (int i = 0; i < list.size();i++) {
-                bf.write(list.get(i).getFirst() + " -> " + list.get(i).getSecond() + "\n");
+            for (ContextFreeNode contextFreeNode : list) {
+                bf.write(contextFreeNode.getFirst() + " -> " + contextFreeNode.getSecond() + "\n");
             }
             bf.flush();// 此处很关键，如果不写该语句，是不能从缓冲区写到文件里的
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
-        }
+        }// TODO Auto-generated catch block
+
     }
     //转换为格里巴克范式
-    public void changeToGreibach_total(String filename) throws IOException {
+    public void changeToGreibach_total(String filename) {
         List<ContextFreeNode> list = new LinkedList<>();
         list = readRule(list,filename);
         judgeContextFreeGrammar(list);
@@ -477,7 +463,7 @@ public class ChangeToGreibach {
         writeToTxt(list);
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         ChangeToGreibach changeToGreibach = new ChangeToGreibach();
         changeToGreibach.changeToGreibach_total("./Data/Grammar7.txt");
     }

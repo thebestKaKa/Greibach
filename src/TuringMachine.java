@@ -1,6 +1,6 @@
 public class TuringMachine {
     //计算x的y次方
-    public void computeYPowerOfX(int x, int y){
+    private void computeYPowerOfX(int x, int y){
         //初始化图灵带为y0x010
         TuringNode s = new TuringNode();
         if (y != 0){
@@ -300,7 +300,7 @@ public class TuringMachine {
 
     public static void main(String[] args) {
         TuringMachine tm = new TuringMachine();
-        tm.computeYPowerOfX(0, 5);
+        tm.computeYPowerOfX(0, 0);
     }
 }
 

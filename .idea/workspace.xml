@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1f74d165-755c-48bd-9a45-56ef86ff0899" name="Default Changelist" comment="">
+    <list default="true" id="1f74d165-755c-48bd-9a45-56ef86ff0899" name="Default Changelist" comment="格式改进">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/greibach_output.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Data/greibach_output.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Greibach/ChangeToGreibach.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Greibach/ChangeToGreibach.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Greibach/CheckNPDA.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Greibach/CheckNPDA.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Greibach/TuringMachine.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Greibach/TuringMachine.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ChangeToGreibach.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ChangeToGreibach.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CheckNPDA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CheckNPDA.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TuringMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TuringMachine.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,7 +36,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="settings.editor.selected.configurable" value="settings.github" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -123,6 +130,19 @@
       <workItem from="1605249631767" duration="11662000" />
       <workItem from="1605322218771" duration="1095000" />
       <workItem from="1605325064384" duration="627000" />
+      <workItem from="1605595381885" duration="56000" />
+      <workItem from="1605595449664" duration="917000" />
+      <workItem from="1605596384812" duration="3108000" />
+      <workItem from="1605602697130" duration="67000" />
+      <workItem from="1605602774900" duration="7733000" />
+      <workItem from="1605620513517" duration="146000" />
+      <workItem from="1605667066081" duration="317000" />
+      <workItem from="1605753353529" duration="1066000" />
+      <workItem from="1605834476029" duration="5408000" />
+      <workItem from="1605959937317" duration="620000" />
+      <workItem from="1606035687376" duration="6475000" />
+      <workItem from="1606116432506" duration="20000" />
+      <workItem from="1606218125747" duration="513000" />
     </task>
     <task id="LOCAL-00001" summary="修改str">
       <created>1605325450614</created>
@@ -165,6 +185,7 @@
       <path value="$PROJECT_DIR$/Greibach" />
     </ignored-roots>
     <MESSAGE value="修改str" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改str" />
+    <MESSAGE value="格式改进" />
+    <option name="LAST_COMMIT_MESSAGE" value="格式改进" />
   </component>
 </project>

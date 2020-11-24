@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.Stack;
 
 public class CheckNPDA {
-    static int count = 0;//str的位置指针
+    private static int count = 0;//str的位置指针
 
-    public boolean checkNPDA(String filename, String str) throws IOException {
+    private boolean checkNPDA(String filename, String str) throws IOException {
         if (str == null)return false;
         //预处理 获取格里巴赫范式list 创建下推自动机的栈 str转为char数组
         List<ContextFreeNode> list = new LinkedList<>();//存格里巴赫文法
@@ -46,14 +46,12 @@ public class CheckNPDA {
         return false;
     }
 
-    public boolean judge(List<ContextFreeNode> list, Stack<Character> stk,char[] input){
+    private boolean judge(List<ContextFreeNode> list, Stack<Character> stk, char[] input){
         if (stk.isEmpty()){
-            if (count == input.length)return true;
-            else return false;
+            return count == input.length;
         }else {
             if (count == input.length)return false;
         }
-
         Stack<Character> stk_copy;
         for (int i = 0; i < list.size();i++){
             //还原栈
@@ -74,7 +72,7 @@ public class CheckNPDA {
 
     public static void main(String[] args) throws IOException {
         CheckNPDA chkNPDA = new CheckNPDA();
-        if(chkNPDA.checkNPDA("./Data/greibach_output.txt","abcabcabcabcabcabcabcabcabc")){
+        if(chkNPDA.checkNPDA("./Data/greibach_output.txt","abcabcabc")){
             System.out.println("接受~");
         }else {
             System.out.println("失败!");
